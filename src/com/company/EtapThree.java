@@ -5,13 +5,15 @@ import java.util.Scanner;
 
 public class EtapThree {
     public static void main(String[] args) {
+
         Scanner sc = new Scanner(System.in);
         System.out.println("---         Start game        ---");
         System.out.println("Predict amount of points (2..12): ");
         int userNum[] = new int [3] ;
         int comp [] = new int[3];
-        int sum  , compSum  ,points  ,compPoints  ;
+        int sum =0  , compSum = 0,points = 0 ,compPoints = 0  ;
 
+        int userPoint = 0;
         int round=1 ;
         for (int i = 0; i < userNum.length; i++) {
             userNum[i] = sc.nextInt();
@@ -31,6 +33,7 @@ public class EtapThree {
             int b2 = rollTheDice();
             printDice(a2);
             printDice(b2);
+
             System.out.println("---------- Current score ----------");
             sum = a + b;
             System.out.println("User:" + sum + " points.");
@@ -46,7 +49,34 @@ public class EtapThree {
             } else {
                 System.out.println("Points exactly");
             }
+
+
+            userPoint += points;
+
+
         }
+
+
+        System.out.println("-------------------- Finish game -------------------");
+          String table = String.join("\n",
+                  "Round            |             User |          Computer \n " +
+                  "-----------------+------------------+---------------------- ",
+                  "                 | Predicted: "+ userNum[0]+"     |Predicted: "+ comp[0] ,
+                  " - 1 -           | Dice: "+ sum +"          | Dice:    "+ compSum ,
+                  "                 | Result: "+ points +"        |   Result: " +compPoints ,
+                  "---------------- +------------------+----------------------" ,
+                  "                 | Predicted: " + userNum[1]+"     | Predicted: "+ comp[1] ,
+                  " - 2 -           | Dice: "+ sum + "          | Dice: " + compSum,
+                  "                 | Result: "+ points+ "        | Result: " + compPoints,
+                  "---------------- +------------------+----------------------" ,
+                  "                 | Predicted: " + userNum[2]+"     | Predicted: "+ comp[2] ,
+                  " - 2 -           | Dice: "+ sum + "          | Dice: " + compSum,
+                  "                 | Result: "+ points+ "        | Result: " + compPoints,
+                  "-----------------+------------------+---------------------- ",
+                  " Total           | Points: "+ "         |Points: " );
+
+        System.out.println(table);
+
     }
 
     public static int rollTheDice() {
